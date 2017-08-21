@@ -54,6 +54,8 @@ c = companies[['cnpj', 'last_updated', 'legal_entity', 'main_activity', 'main_ac
                'partner_2_name', 'partner_2_qualification',
                'situation', 'situation_date', 'state', 'status', 'type']]
 
+c.columns.values[0] = 'cnpj_cpf'
+
 c.head(5)
 
 
@@ -81,4 +83,12 @@ r.head(10)
 # In[4]:
 
 # r.groupby(['supplier', 'congressperson_name', 'year'])['total_net_value'].sum().sort_values(ascending=False).head(20)
+filtered_c = c[c['cnpj_cpf'].isin(r.cnpj_cpf.unique())]
+r = r.merge(filtered_c, on='cnpj_cpf', how='left')
+r.head(10)
+
+
+# In[ ]:
+
+
 
