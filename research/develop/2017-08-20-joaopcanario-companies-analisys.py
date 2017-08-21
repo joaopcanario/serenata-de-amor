@@ -5,7 +5,7 @@
 # 
 # This notebook provides an exploratory analysis on companies with the same name but different CNPJ's. On this analysis it'll be tried to know more about their existence through an exploratory analysis, and possibly get more insights for new irregularities.
 
-# In[ ]:
+# In[1]:
 
 from serenata_toolbox.datasets import Datasets
 from pylab import rcParams
@@ -31,7 +31,7 @@ datasets.downloader.download('2017-07-04-reimbursements.xz')
 datasets.downloader.download('2017-05-21-companies-no-geolocation.xz')
 
 
-# In[ ]:
+# In[2]:
 
 # Loading companies dataset
 CP_DTYPE =dict(cnpj=np.str, name=np.str,
@@ -59,7 +59,7 @@ c.columns.values[0] = 'cnpj_cpf'
 c.head(5)
 
 
-# In[ ]:
+# In[3]:
 
 # Loading reimbursments dataset
 R_DTYPE =dict(cnpj_cpf=np.str, year=np.int16, month=np.int16,
@@ -80,7 +80,7 @@ r = reimbursements[['year', 'month', 'total_net_value', 'party',
 r.head(10)
 
 
-# In[ ]:
+# In[4]:
 
 # r.groupby(['supplier', 'congressperson_name', 'year'])['total_net_value'].sum().sort_values(ascending=False).head(20)
 filtered_c = c[c['cnpj_cpf'].isin(r.cnpj_cpf.unique())]
@@ -90,7 +90,7 @@ data = data[data.year >= 2016]
 data.head(10)
 
 
-# In[ ]:
+# In[5]:
 
 # count objects with invalid main_activity_code
 d = dict()
@@ -98,34 +98,19 @@ d = dict()
 invalid_main_activity = "00.00-0-00"
 data_len = len(data)
 
-d['valid'] = len(data[data.main_activity_code_x != invalid_main_activity]) / data_len * 100
-d['invalid'] = len(data[data.main_activity_code_x == invalid_main_activity]) / data_len * 100
+d['valid'] = len(data[data.main_activity_code != invalid_main_activity]) / data_len * 100
+d['invalid'] = len(data[data.main_activity_code == invalid_main_activity]) / data_len * 100
 
 s = pd.Series(d)
 s.plot(kind='pie', autopct='%.2f')
 plt.title('Number of valid and invalid main_activity_code in dataset')
 
 
-# In[ ]:
+# In[6]:
 
 # remove items with invalid main_activity_code
-data = data[data.main_activity_code_x != "00.00-0-00"]
+data = data[data.main_activity_code != "00.00-0-00"]
 data.head(5)
 
-
-# In[ ]:
-
-# remove items previous than 2015
-data = data[data['year'] >= 2015]
-data.head(5)
-
-
-# In[ ]:
-
-data.shape
-
-
-# In[ ]:
-
-
+print('dataset shape: {}.'.format(data.shape))
 
