@@ -130,51 +130,58 @@ for l in labels:
 df.head()
 
 
-# In[8]:
+# In[19]:
 
+from time import time
+from sklearn import metrics
 from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 
-# Testing number of clusters
+from sklearn.preprocessing import scale
+
+df = scale(df)
+
+# Beh number of clusters
 X, _, = train_test_split(df, train_size=0.2, random_state=2)
 
-# Two clusters
-y_pred = KMeans(n_clusters=2).fit_predict(X)
+# print(82 * '_')
+print(42 * '_')
+# print('init\t\ttime\tinertia\thomo\tcompl\tv-meas\tARI\tAMI\tsilhouette')
+print('init\t\ttime\tinertia\tsilhouette')
 
-# Comment plots if they're not used
-plt.figure(figsize=(12, 12))
+def bench_k_means(estimator, name, data, labels=0):
+    t0 = time()
+    estimator.fit(data)
+#     print('%-9s\t%.2fs\t%i\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f'
+    print('%-9s\t%.2fs\t%i\t%.3f'
+          % (name, (time() - t0), estimator.inertia_,
+#              metrics.homogeneity_score(labels, estimator.labels_),
+#              metrics.completeness_score(labels, estimator.labels_),
+#              metrics.v_measure_score(labels, estimator.labels_),
+#              metrics.adjusted_rand_score(labels, estimator.labels_),
+#              metrics.adjusted_mutual_info_score(labels,  estimator.labels_),
+             metrics.silhouette_score(data, estimator.labels_, metric='euclidean',
+                                      sample_size=300)))
 
-# Comment plots if they're not used
-plt.subplot(221)
-plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
-plt.title("Two clusters")
 
-# Three clusters
-y_pred = KMeans(n_clusters=3).fit_predict(X)
+bench_k_means(KMeans(n_clusters=2), name="KMeans (2)", data=X)
+bench_k_means(KMeans(n_clusters=3), name="KMeans (3)", data=X)
+bench_k_means(KMeans(n_clusters=4), name="KMeans (4)", data=X)
+bench_k_means(KMeans(n_clusters=5), name="KMeans (5)", data=X)
+    
 
-# Comment plots if they're not used
-plt.subplot(222)
-plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
-plt.title("Three clusters")
+pca = PCA(n_components=2).fit(X)
+bench_k_means(KMeans(init=pca.components_, n_clusters=2,  n_init=1), name="PCA-based (2)", data=X)
+pca = PCA(n_components=3).fit(X)
+bench_k_means(KMeans(init=pca.components_, n_clusters=3,  n_init=1), name="PCA-based (3)", data=X)
+pca = PCA(n_components=4).fit(X)
+bench_k_means(KMeans(init=pca.components_, n_clusters=4,  n_init=1), name="PCA-based (4)", data=X)
+pca = PCA(n_components=5).fit(X)
+bench_k_means(KMeans(init=pca.components_, n_clusters=5,  n_init=1), name="PCA-based (5)", data=X)
 
-# Four clusters
-y_pred = KMeans(n_clusters=4).fit_predict(X)
-
-# Comment plots if they're not used
-plt.subplot(223)
-plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
-plt.title("Four clusters")
-
-# Five clusters
-y_pred = KMeans(n_clusters=5).fit_predict(X)
-
-# Comment plots if they're not used
-plt.subplot(224)
-plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
-plt.title("Five clusters")
-
-# Comment plots if they're not used
-plt.show()
+# print(82 * '_')
+print(42 * '_')
 
 
 # In[ ]:
