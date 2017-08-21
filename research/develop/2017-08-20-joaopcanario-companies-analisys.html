@@ -11785,7 +11785,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">serenata_toolbox.datasets</span> <span class="k">import</span> <span class="n">Datasets</span>
@@ -11816,32 +11816,15 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Downloading 2017-07-04-reimbursements.xz: 100%|██████████| 34.1M/34.1M [00:38&lt;00:00, 889Kb/s]
-Downloading 2017-05-21-companies-no-geolocation.xz: 100%|██████████| 7.49M/7.49M [00:08&lt;00:00, 882Kb/s]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading companies dataset</span>
-<span class="n">CP_DTYPE</span> <span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">cnpj</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">str</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">str</span><span class="p">,</span> <span class="n">main_activity_code</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
-               <span class="n">legal_entity</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="n">main_activity</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
+<span class="n">CP_DTYPE</span> <span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">cnpj</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">str</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">str</span><span class="p">,</span>
+               <span class="n">main_activity_code</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="n">legal_entity</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
                <span class="n">partner_1_name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">str</span><span class="p">,</span> <span class="n">partner_1_qualification</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
                <span class="n">partner_2_name</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">str</span><span class="p">,</span> <span class="n">partner_2_qualification</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
                <span class="n">situation</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
@@ -11855,7 +11838,7 @@ Downloading 2017-05-21-companies-no-geolocation.xz: 100%|███████�
 <span class="c1"># companies = companies.dropna(axis=[0, 1], how=&#39;all&#39;).dropna(axis=1, thresh=30000)</span>
 <span class="n">companies</span><span class="p">[</span><span class="s1">&#39;cnpj&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=</span><span class="s1">&#39;[^0-9]+&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">c</span> <span class="o">=</span> <span class="n">companies</span><span class="p">[[</span><span class="s1">&#39;cnpj&#39;</span><span class="p">,</span> <span class="s1">&#39;last_updated&#39;</span><span class="p">,</span> <span class="s1">&#39;legal_entity&#39;</span><span class="p">,</span> <span class="s1">&#39;main_activity&#39;</span><span class="p">,</span> <span class="s1">&#39;main_activity_code&#39;</span><span class="p">,</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">companies</span><span class="p">[[</span><span class="s1">&#39;cnpj&#39;</span><span class="p">,</span> <span class="s1">&#39;last_updated&#39;</span><span class="p">,</span> <span class="s1">&#39;legal_entity&#39;</span><span class="p">,</span> <span class="s1">&#39;main_activity_code&#39;</span><span class="p">,</span>
                <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;opening&#39;</span><span class="p">,</span> <span class="s1">&#39;partner_1_name&#39;</span><span class="p">,</span> <span class="s1">&#39;partner_1_qualification&#39;</span><span class="p">,</span>
                <span class="s1">&#39;partner_2_name&#39;</span><span class="p">,</span> <span class="s1">&#39;partner_2_qualification&#39;</span><span class="p">,</span>
                <span class="s1">&#39;situation&#39;</span><span class="p">,</span> <span class="s1">&#39;situation_date&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">]]</span>
@@ -11869,148 +11852,10 @@ Downloading 2017-05-21-companies-no-geolocation.xz: 100%|███████�
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[2]:</div>
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>cnpj_cpf</th>
-      <th>last_updated</th>
-      <th>legal_entity</th>
-      <th>main_activity</th>
-      <th>main_activity_code</th>
-      <th>name</th>
-      <th>opening</th>
-      <th>partner_1_name</th>
-      <th>partner_1_qualification</th>
-      <th>partner_2_name</th>
-      <th>partner_2_qualification</th>
-      <th>situation</th>
-      <th>situation_date</th>
-      <th>state</th>
-      <th>status</th>
-      <th>type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>04636932000186</td>
-      <td>2017-01-14 07:32:18.041</td>
-      <td>213-5 - Empresário (Individual)</td>
-      <td>Lanchonetes, casas de chá, de sucos e similares</td>
-      <td>56.11-2-03</td>
-      <td>IVO M DIAS - ME</td>
-      <td>1980-02-04</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ATIVA</td>
-      <td>2005-03-11</td>
-      <td>RO</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>28232643000180</td>
-      <td>2017-04-14 00:09:24.747</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Comércio varejista de combustíveis para veícul...</td>
-      <td>47.31-8-00</td>
-      <td>POSTO DE SERVICO CAMBOATA LTDA</td>
-      <td>1984-03-21</td>
-      <td>DOMINGOS GONCALVES DOS SANTOS</td>
-      <td>49-Sócio-Administrador</td>
-      <td>SEBASTIAO CORDEIRO BARBOSA</td>
-      <td>49-Sócio-Administrador</td>
-      <td>ATIVA</td>
-      <td>2004-02-10</td>
-      <td>RJ</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>18005070000106</td>
-      <td>2017-01-12 18:55:54.830</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Comércio varejista de combustíveis para veícul...</td>
-      <td>47.31-8-00</td>
-      <td>AUTO POSTO PRINCIPE III LTDA</td>
-      <td>2012-09-25</td>
-      <td>ARLINDO SERAFIM</td>
-      <td>05-Administrador</td>
-      <td>CLINEU LISSONI</td>
-      <td>05-Administrador</td>
-      <td>ATIVA</td>
-      <td>2012-09-25</td>
-      <td>SP</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>17793398000163</td>
-      <td>2017-03-22 03:30:12.675</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Atividades de consultoria em gestão empresaria...</td>
-      <td>70.20-4-00</td>
-      <td>ACELE - TREINAMENTO, ASSESSORIA E CONSULTORIA ...</td>
-      <td>2013-03-18</td>
-      <td>LEONARDO AUGUSTO FRETTA JOSE</td>
-      <td>49-Sócio-Administrador</td>
-      <td>ZELIA ANITA FRETTA JOSE</td>
-      <td>22-Sócio</td>
-      <td>ATIVA</td>
-      <td>2013-03-18</td>
-      <td>SC</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>32021479000139</td>
-      <td>2017-03-24 05:05:30.038</td>
-      <td>230-5 - Empresa Individual de Responsabilidade...</td>
-      <td>Locação de automóveis sem condutor</td>
-      <td>77.11-0-00</td>
-      <td>CAIRU AUTO CENTER EIRELI - EPP</td>
-      <td>1988-04-21</td>
-      <td>CARLOS ALBERTO CAMPOS DE ANDRADE</td>
-      <td>65-Titular Pessoa Física Residente ou Domicili...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ATIVA</td>
-      <td>2005-03-11</td>
-      <td>RJ</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading reimbursments dataset</span>
@@ -12036,540 +11881,88 @@ Downloading 2017-05-21-companies-no-geolocation.xz: 100%|███████�
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[3]:</div>
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>total_net_value</th>
-      <th>party</th>
-      <th>state</th>
-      <th>term</th>
-      <th>issue_date</th>
-      <th>congressperson_name</th>
-      <th>subquota_description</th>
-      <th>supplier</th>
-      <th>cnpj_cpf</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>130.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-06 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>MELHOR POSTO DE COMBUSTÍVEIS LTDA</td>
-      <td>02989654001197</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>135.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-07 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Locomotion, meal and lodging</td>
-      <td>MELONGENA PARTICIPAÇÕES LTDA</td>
-      <td>09259358000450</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>1000.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-12 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Maintenance of office supporting parliamentary...</td>
-      <td>ARY ANTONIO MOSCHETTA</td>
-      <td>01537369920</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>170.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-14 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>CONVER COMBUSTÍVEIS AUTOMÓVEIS LTDA</td>
-      <td>00038505000579</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>100.11</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-09 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>GRANDO E GROFF LTDA</td>
-      <td>00161576000211</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>11.40</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-04 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Software purchase or renting; Postal services;...</td>
-      <td>WERMUTH SERVIÇOS POSTAIS FRANQUEADOS LTDA</td>
-      <td>03006516000131</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>40.70</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-08 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Locomotion, meal and lodging</td>
-      <td>BARBATO E NOGUEIRA LTDA</td>
-      <td>77559425000160</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>93.40</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-06 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>AJ BORDIGNON E CIA LTDA</td>
-      <td>00683770000186</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>116.53</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-20 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>AJ BORDIGNON E CIA LTDA</td>
-      <td>00683770000186</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>113.56</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-26 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>AJ BORDIGNON E CIA LTDA</td>
-      <td>00683770000186</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># r.groupby([&#39;supplier&#39;, &#39;congressperson_name&#39;, &#39;year&#39;])[&#39;total_net_value&#39;].sum().sort_values(ascending=False).head(20)</span>
 <span class="n">filtered_c</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;cnpj_cpf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">cnpj_cpf</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">filtered_c</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;cnpj_cpf&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
-<span class="n">r</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">filtered_c</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;cnpj_cpf&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;=</span> <span class="mi">2016</span><span class="p">]</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># count objects with invalid main_activity_code</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
+<span class="n">invalid_main_activity</span> <span class="o">=</span> <span class="s2">&quot;00.00-0-00&quot;</span>
+<span class="n">data_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[4]:</div>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;valid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">main_activity_code_x</span> <span class="o">!=</span> <span class="n">invalid_main_activity</span><span class="p">])</span> <span class="o">/</span> <span class="n">data_len</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;invalid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">main_activity_code_x</span> <span class="o">==</span> <span class="n">invalid_main_activity</span><span class="p">])</span> <span class="o">/</span> <span class="n">data_len</span> <span class="o">*</span> <span class="mi">100</span>
 
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;pie&#39;</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Number of valid and invalid main_activity_code in dataset&#39;</span><span class="p">)</span>
+</pre></div>
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>total_net_value</th>
-      <th>party</th>
-      <th>state_x</th>
-      <th>term</th>
-      <th>issue_date</th>
-      <th>congressperson_name</th>
-      <th>subquota_description</th>
-      <th>supplier</th>
-      <th>cnpj_cpf</th>
-      <th>last_updated</th>
-      <th>legal_entity</th>
-      <th>main_activity</th>
-      <th>main_activity_code</th>
-      <th>name</th>
-      <th>opening</th>
-      <th>partner_1_name</th>
-      <th>partner_1_qualification</th>
-      <th>partner_2_name</th>
-      <th>partner_2_qualification</th>
-      <th>situation</th>
-      <th>situation_date</th>
-      <th>state_y</th>
-      <th>status</th>
-      <th>type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>130.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-06 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>MELHOR POSTO DE COMBUSTÍVEIS LTDA</td>
-      <td>02989654001197</td>
-      <td>2017-03-06 01:56:41.366</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>********</td>
-      <td>00.00-0-00</td>
-      <td>MELHOR POSTO DE COMBUSTIVEIS LTDA</td>
-      <td>2005-02-08</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>BAIXADA</td>
-      <td>2013-01-03</td>
-      <td>NaN</td>
-      <td>OK</td>
-      <td>FILIAL</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>135.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-07 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Locomotion, meal and lodging</td>
-      <td>MELONGENA PARTICIPAÇÕES LTDA</td>
-      <td>09259358000450</td>
-      <td>2017-04-15 00:27:37.832</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>********</td>
-      <td>00.00-0-00</td>
-      <td>MELONGENA PARTICIPACOES LTDA</td>
-      <td>2008-04-11</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>BAIXADA</td>
-      <td>2016-06-17</td>
-      <td>NaN</td>
-      <td>OK</td>
-      <td>FILIAL</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>1000.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-12 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Maintenance of office supporting parliamentary...</td>
-      <td>ARY ANTONIO MOSCHETTA</td>
-      <td>01537369920</td>
-      <td>NaT</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaT</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaT</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>170.00</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-14 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>CONVER COMBUSTÍVEIS AUTOMÓVEIS LTDA</td>
-      <td>00038505000579</td>
-      <td>2017-03-07 08:29:44.806</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>********</td>
-      <td>00.00-0-00</td>
-      <td>CONVER COMBUSTIVEIS AUTOMOTIVOS LTDA</td>
-      <td>1976-12-16</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>BAIXADA</td>
-      <td>2013-01-03</td>
-      <td>NaN</td>
-      <td>OK</td>
-      <td>FILIAL</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>100.11</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-09 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>GRANDO E GROFF LTDA</td>
-      <td>00161576000211</td>
-      <td>2017-03-29 22:51:43.585</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Comércio varejista de combustíveis para veícul...</td>
-      <td>47.31-8-00</td>
-      <td>GRANDO &amp; GROFF LTDA</td>
-      <td>2002-01-18</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ATIVA</td>
-      <td>2004-11-12</td>
-      <td>PR</td>
-      <td>OK</td>
-      <td>FILIAL</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>11.40</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-04 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Software purchase or renting; Postal services;...</td>
-      <td>WERMUTH SERVIÇOS POSTAIS FRANQUEADOS LTDA</td>
-      <td>03006516000131</td>
-      <td>2017-04-19 04:59:48.088</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Atividades de franqueadas do Correio Nacional</td>
-      <td>53.10-5-02</td>
-      <td>WERMUTH SERVICOS POSTAIS FRANQUEADOS LTDA - ME</td>
-      <td>1999-03-03</td>
-      <td>IZALDIR ALOISIO WERMUTH</td>
-      <td>49-Sócio-Administrador</td>
-      <td>IVANIR POTTKER WERMUTH</td>
-      <td>22-Sócio</td>
-      <td>ATIVA</td>
-      <td>2005-10-28</td>
-      <td>PR</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2009</td>
-      <td>4</td>
-      <td>40.70</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-04-08 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Locomotion, meal and lodging</td>
-      <td>BARBATO E NOGUEIRA LTDA</td>
-      <td>77559425000160</td>
-      <td>2017-04-06 00:43:25.768</td>
-      <td>230-5 - Empresa Individual de Responsabilidade...</td>
-      <td>Gestão de ativos intangíveis não-financeiros</td>
-      <td>77.40-3-00</td>
-      <td>BARBATO RESTAURANTE EIRELI - EPP</td>
-      <td>1977-11-22</td>
-      <td>OMILDO BARBATO</td>
-      <td>65-Titular Pessoa Física Residente ou Domicili...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ATIVA</td>
-      <td>2003-01-18</td>
-      <td>PR</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>93.40</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-06 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>AJ BORDIGNON E CIA LTDA</td>
-      <td>00683770000186</td>
-      <td>2017-01-25 01:08:11.497</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Comércio varejista de combustíveis para veícul...</td>
-      <td>47.31-8-00</td>
-      <td>A J BORDIGNON &amp; CIA LTDA</td>
-      <td>1995-05-07</td>
-      <td>ADALBERTO JOSE BORDIGNON</td>
-      <td>22-Sócio</td>
-      <td>ALIDES ANA ZANATTA BORDIGNON</td>
-      <td>22-Sócio</td>
-      <td>ATIVA</td>
-      <td>2004-09-10</td>
-      <td>PR</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>116.53</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-20 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>AJ BORDIGNON E CIA LTDA</td>
-      <td>00683770000186</td>
-      <td>2017-01-25 01:08:11.497</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Comércio varejista de combustíveis para veícul...</td>
-      <td>47.31-8-00</td>
-      <td>A J BORDIGNON &amp; CIA LTDA</td>
-      <td>1995-05-07</td>
-      <td>ADALBERTO JOSE BORDIGNON</td>
-      <td>22-Sócio</td>
-      <td>ALIDES ANA ZANATTA BORDIGNON</td>
-      <td>22-Sócio</td>
-      <td>ATIVA</td>
-      <td>2004-09-10</td>
-      <td>PR</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>2009</td>
-      <td>3</td>
-      <td>113.56</td>
-      <td>PP</td>
-      <td>PR</td>
-      <td>2015.0</td>
-      <td>2009-03-26 00:00:00</td>
-      <td>DILCEU SPERAFICO</td>
-      <td>Fuels and lubricants</td>
-      <td>AJ BORDIGNON E CIA LTDA</td>
-      <td>00683770000186</td>
-      <td>2017-01-25 01:08:11.497</td>
-      <td>206-2 - Sociedade Empresária Limitada</td>
-      <td>Comércio varejista de combustíveis para veícul...</td>
-      <td>47.31-8-00</td>
-      <td>A J BORDIGNON &amp; CIA LTDA</td>
-      <td>1995-05-07</td>
-      <td>ADALBERTO JOSE BORDIGNON</td>
-      <td>22-Sócio</td>
-      <td>ALIDES ANA ZANATTA BORDIGNON</td>
-      <td>22-Sócio</td>
-      <td>ATIVA</td>
-      <td>2004-09-10</td>
-      <td>PR</td>
-      <td>OK</td>
-      <td>MATRIZ</td>
-    </tr>
-  </tbody>
-</table>
+</div>
 </div>
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove items with invalid main_activity_code</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">main_activity_code_x</span> <span class="o">!=</span> <span class="s2">&quot;00.00-0-00&quot;</span><span class="p">]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
 
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove items previous than 2015</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2015</span><span class="p">]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
 </div>
 </div>
 
