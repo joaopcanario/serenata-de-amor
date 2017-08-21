@@ -110,7 +110,74 @@ plt.title('Number of valid and invalid main_activity_code in dataset')
 
 # remove items with invalid main_activity_code
 data = data[data.main_activity_code != "00.00-0-00"]
+print('dataset shape: {}.'.format(data.shape))
+
 data.head(5)
 
-print('dataset shape: {}.'.format(data.shape))
+
+# In[7]:
+
+labels = ['party', 'state_x', 'term', 'issue_date', 'congressperson_name', 
+          'subquota_description', 'supplier', 'cnpj_cpf', 'legal_entity', 
+          'main_activity_code', 'name', 'partner_1_name', 'partner_1_qualification', 
+          'partner_2_name', 'partner_2_qualification', 'situation', 'state_y',
+          'status', 'type']
+
+df = pd.DataFrame()
+for l in labels:
+    df[l] = data[l].astype('category').cat.codes
+
+df.head()
+
+
+# In[8]:
+
+from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
+
+# Testing number of clusters
+X, _, = train_test_split(df, train_size=0.2, random_state=2)
+
+# Two clusters
+y_pred = KMeans(n_clusters=2).fit_predict(X)
+
+# Comment plots if they're not used
+plt.figure(figsize=(12, 12))
+
+# Comment plots if they're not used
+plt.subplot(221)
+plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
+plt.title("Two clusters")
+
+# Three clusters
+y_pred = KMeans(n_clusters=3).fit_predict(X)
+
+# Comment plots if they're not used
+plt.subplot(222)
+plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
+plt.title("Three clusters")
+
+# Four clusters
+y_pred = KMeans(n_clusters=4).fit_predict(X)
+
+# Comment plots if they're not used
+plt.subplot(223)
+plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
+plt.title("Four clusters")
+
+# Five clusters
+y_pred = KMeans(n_clusters=5).fit_predict(X)
+
+# Comment plots if they're not used
+plt.subplot(224)
+plt.scatter(X.iloc[:, 0], X.iloc[:, 1], c=y_pred)
+plt.title("Five clusters")
+
+# Comment plots if they're not used
+plt.show()
+
+
+# In[ ]:
+
+
 
