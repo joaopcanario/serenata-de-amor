@@ -5,10 +5,11 @@
 # 
 # This notebook provides an exploratory analysis on companies with the same name but different CNPJ's. On this analysis it'll be tried to know more about their existence through an exploratory analysis, and possibly get more insights for new irregularities.
 
-# In[1]:
+# In[ ]:
 
 from serenata_toolbox.datasets import Datasets
 from pylab import rcParams
+from pathlib import Path
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -27,11 +28,17 @@ pd.options.display.max_columns = 10000
 # First, lets download all the needed datasets for this analysis
 datasets = Datasets('../data/')
                              
-datasets.downloader.download('2017-07-04-reimbursements.xz')
-datasets.downloader.download('2017-05-21-companies-no-geolocation.xz')
+reimbursments_path = Path("../data/2017-07-04-reimbursements.xz")
+companies_path = Path("../data/2017-05-21-companies-no-geolocation.xz")
+
+if not reimbursments_path.exists():
+    datasets.downloader.download('2017-07-04-reimbursements.xz')
+
+if not companies_path.exists():
+    datasets.downloader.download('2017-05-21-companies-no-geolocation.xz')
 
 
-# In[2]:
+# In[ ]:
 
 # Loading companies dataset
 CP_DTYPE =dict(cnpj=np.str, name=np.str,
@@ -41,7 +48,7 @@ CP_DTYPE =dict(cnpj=np.str, name=np.str,
                situation='category', state='category',
                status='category', type='category')
 
-companies = pd.read_csv('../data/2017-05-21-companies-no-geolocation.xz',
+companies = pd.read_csv(str(companies_path),
                         dtype=CP_DTYPE, low_memory=False,
                         parse_dates=['last_updated', 'situation_date', 'opening'])
 
@@ -59,7 +66,7 @@ c.columns.values[0] = 'cnpj_cpf'
 c.head(5)
 
 
-# In[3]:
+# In[ ]:
 
 # Loading reimbursments dataset
 R_DTYPE =dict(cnpj_cpf=np.str, year=np.int16, month=np.int16,
@@ -70,7 +77,7 @@ R_DTYPE =dict(cnpj_cpf=np.str, year=np.int16, month=np.int16,
               subquota_number='category', state='category',
               party='category')
 
-reimbursements = pd.read_csv('../data/2017-07-04-reimbursements.xz',
+reimbursements = pd.read_csv(str(reimbursments_path),
                              dtype=R_DTYPE, low_memory=False, parse_dates=['issue_date'])
 
 r = reimbursements[['year', 'month', 'total_net_value', 'party',
@@ -80,7 +87,7 @@ r = reimbursements[['year', 'month', 'total_net_value', 'party',
 r.head(10)
 
 
-# In[4]:
+# In[ ]:
 
 # r.groupby(['supplier', 'congressperson_name', 'year'])['total_net_value'].sum().sort_values(ascending=False).head(20)
 filtered_c = c[c['cnpj_cpf'].isin(r.cnpj_cpf.unique())]
@@ -90,7 +97,7 @@ data = data[data.year >= 2016]
 data.head(10)
 
 
-# In[5]:
+# In[ ]:
 
 # count objects with invalid main_activity_code
 d = dict()
@@ -106,7 +113,7 @@ s.plot(kind='pie', autopct='%.2f')
 plt.title('Number of valid and invalid main_activity_code in dataset')
 
 
-# In[6]:
+# In[ ]:
 
 # remove items with invalid main_activity_code
 data = data[data.main_activity_code != "00.00-0-00"]
@@ -115,7 +122,7 @@ print('dataset shape: {}.'.format(data.shape))
 data.head(5)
 
 
-# In[7]:
+# In[ ]:
 
 labels = ['party', 'state_x', 'term', 'issue_date', 'congressperson_name', 
           'subquota_description', 'supplier', 'cnpj_cpf', 'legal_entity', 
@@ -130,7 +137,7 @@ for l in labels:
 df.head()
 
 
-# In[19]:
+# In[ ]:
 
 from time import time
 from sklearn import metrics
@@ -142,45 +149,39 @@ from sklearn.preprocessing import scale
 
 df = scale(df)
 
-# Beh number of clusters
+# Benchmark clusters
 X, _, = train_test_split(df, train_size=0.2, random_state=2)
 
-# print(82 * '_')
+X.shape
+
+
+# In[ ]:
+
 print(42 * '_')
-# print('init\t\ttime\tinertia\thomo\tcompl\tv-meas\tARI\tAMI\tsilhouette')
 print('init\t\ttime\tinertia\tsilhouette')
 
 def bench_k_means(estimator, name, data, labels=0):
     t0 = time()
+    print('antes do fit')
     estimator.fit(data)
-#     print('%-9s\t%.2fs\t%i\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f'
+    print('depois do fit')
     print('%-9s\t%.2fs\t%i\t%.3f'
           % (name, (time() - t0), estimator.inertia_,
-#              metrics.homogeneity_score(labels, estimator.labels_),
-#              metrics.completeness_score(labels, estimator.labels_),
-#              metrics.v_measure_score(labels, estimator.labels_),
-#              metrics.adjusted_rand_score(labels, estimator.labels_),
-#              metrics.adjusted_mutual_info_score(labels,  estimator.labels_),
-             metrics.silhouette_score(data, estimator.labels_, metric='euclidean',
-                                      sample_size=300)))
+             metrics.silhouette_score(data, estimator.labels_, metric='euclidean')))
 
+bench_k_means(KMeans(n_clusters=2,  n_init=10), name="KMeans (20)", data=X)
+# bench_k_means(KMeans(n_clusters=3), name="KMeans (30)", data=X)
+# bench_k_means(KMeans(n_clusters=4), name="KMeans (40)", data=X)
+# bench_k_means(KMeans(n_clusters=5), name="KMeans (50)", data=X)
 
-bench_k_means(KMeans(n_clusters=2), name="KMeans (2)", data=X)
-bench_k_means(KMeans(n_clusters=3), name="KMeans (3)", data=X)
-bench_k_means(KMeans(n_clusters=4), name="KMeans (4)", data=X)
-bench_k_means(KMeans(n_clusters=5), name="KMeans (5)", data=X)
-    
+bench_k_means(KMeans(n_clusters=2), name="PCA-based (20)", data=PCA(n_components=2).fit(X).compents_)
+# bench_k_means(KMeans(init=PCA(n_components=30).fit(X).components_, n_clusters=30,  n_init=1),
+#               name="PCA-based (30)", data=X)
+# bench_k_means(KMeans(init=PCA(n_components=40).fit(X).components_, n_clusters=40,  n_init=1),
+#               name="PCA-based (40)", data=X)
+# bench_k_means(KMeans(init=PCA(n_components=50).fit(X).components_, n_clusters=50,  n_init=1),
+#               name="PCA-based (50)", data=X)
 
-pca = PCA(n_components=2).fit(X)
-bench_k_means(KMeans(init=pca.components_, n_clusters=2,  n_init=1), name="PCA-based (2)", data=X)
-pca = PCA(n_components=3).fit(X)
-bench_k_means(KMeans(init=pca.components_, n_clusters=3,  n_init=1), name="PCA-based (3)", data=X)
-pca = PCA(n_components=4).fit(X)
-bench_k_means(KMeans(init=pca.components_, n_clusters=4,  n_init=1), name="PCA-based (4)", data=X)
-pca = PCA(n_components=5).fit(X)
-bench_k_means(KMeans(init=pca.components_, n_clusters=5,  n_init=1), name="PCA-based (5)", data=X)
-
-# print(82 * '_')
 print(42 * '_')
 
 
