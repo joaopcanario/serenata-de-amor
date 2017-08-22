@@ -25,9 +25,12 @@ matplotlib.rcParams.update({'font.size': 14})
 pd.options.display.max_rows = 100000
 pd.options.display.max_columns = 10000
 
+
+# In[2]:
+
 # First, lets download all the needed datasets for this analysis
 datasets = Datasets('../data/')
-                             
+
 reimbursments_path = Path("../data/2017-07-04-reimbursements.xz")
 companies_path = Path("../data/2017-05-21-companies-no-geolocation.xz")
 
@@ -38,7 +41,7 @@ if not companies_path.exists():
     datasets.downloader.download('2017-05-21-companies-no-geolocation.xz')
 
 
-# In[2]:
+# In[3]:
 
 # Loading companies dataset
 CP_DTYPE =dict(cnpj=np.str, name=np.str,
@@ -48,7 +51,7 @@ CP_DTYPE =dict(cnpj=np.str, name=np.str,
                situation='category', state='category',
                status='category', type='category')
 
-companies = pd.read_csv(str(companies_path),
+companies = pd.read_csv('../data/2017-05-21-companies-no-geolocation.xz',
                         dtype=CP_DTYPE, low_memory=False,
                         parse_dates=['last_updated', 'situation_date', 'opening'])
 
@@ -66,7 +69,7 @@ c.columns.values[0] = 'cnpj_cpf'
 c.head(5)
 
 
-# In[3]:
+# In[4]:
 
 # Loading reimbursments dataset
 R_DTYPE =dict(cnpj_cpf=np.str, year=np.int16, month=np.int16,
@@ -77,7 +80,7 @@ R_DTYPE =dict(cnpj_cpf=np.str, year=np.int16, month=np.int16,
               subquota_number='category', state='category',
               party='category')
 
-reimbursements = pd.read_csv(str(reimbursments_path),
+reimbursements = pd.read_csv('../data/2017-07-04-reimbursements.xz',
                              dtype=R_DTYPE, low_memory=False, parse_dates=['issue_date'])
 
 r = reimbursements[['year', 'month', 'total_net_value', 'party',
@@ -87,7 +90,7 @@ r = reimbursements[['year', 'month', 'total_net_value', 'party',
 r.head(10)
 
 
-# In[4]:
+# In[5]:
 
 # r.groupby(['supplier', 'congressperson_name', 'year'])['total_net_value'].sum().sort_values(ascending=False).head(20)
 filtered_c = c[c['cnpj_cpf'].isin(r.cnpj_cpf.unique())]
@@ -97,7 +100,7 @@ data = data[data.year >= 2016]
 data.head(10)
 
 
-# In[5]:
+# In[6]:
 
 # count objects with invalid main_activity_code
 d = dict()
@@ -113,7 +116,7 @@ s.plot(kind='pie', autopct='%.2f')
 plt.title('Number of valid and invalid main_activity_code in dataset')
 
 
-# In[6]:
+# In[7]:
 
 # remove items with invalid main_activity_code
 data = data[data.main_activity_code != "00.00-0-00"]
@@ -122,7 +125,7 @@ print('dataset shape: {}.'.format(data.shape))
 data.head(5)
 
 
-# In[7]:
+# In[8]:
 
 labels = ['party', 'state_x', 'term', 'issue_date', 'congressperson_name', 
           'subquota_description', 'supplier', 'cnpj_cpf', 'legal_entity', 
@@ -137,97 +140,101 @@ for l in labels:
 df.head()
 
 
-# In[8]:
+# In[9]:
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale
 
-df = scale(df)
+X = scale(df)
 
-# Benchmark clusters
-X, _, = train_test_split(df, train_size=0.2, random_state=2)
+# # Benchmark clusters
+# X, _, = train_test_split(df, train_size=0.1, random_state=2)
+X.shape
 
 
-# In[ ]:
+# In[11]:
 
 from time import time
 from sklearn import metrics
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-# print(42 * '_')
-# print('init\t\ttime\tinertia\tsilhouette')
+print(42 * '_')
+print('init\t\ttime\tinertia\tsilhouette')
 
-# def bench_k_means(estimator, name, data, labels=0):
-#     t0 = time()
-#     print('antes do fit')
-#     estimator.fit(data)
-#     print('%-9s\t%.2fs\t%i\t%.3f'
-#           % (name, (time() - t0), estimator.inertia_,
-#              metrics.silhouette_score(data, estimator.labels_, metric='euclidean')))
+def bench_k_means(estimator, name, data, labels=0):
+    t0 = time()
+    estimator.fit(data)
+    print('%-9s\t%.2fs\t%i\t%.3f'
+          % (name, (time() - t0), estimator.inertia_,
+             metrics.silhouette_score(data, estimator.labels_,
+                                      metric='euclidean',
+                                      sample_size=10000)))
 
-# bench_k_means(KMeans(n_clusters=2,  n_init=10), name="KMeans (20)", data=X)
-# # bench_k_means(KMeans(n_clusters=3), name="KMeans (30)", data=X)
-# # bench_k_means(KMeans(n_clusters=4), name="KMeans (40)", data=X)
-# # bench_k_means(KMeans(n_clusters=5), name="KMeans (50)", data=X)
+bench_k_means(KMeans(init='k-means++', n_clusters=3, n_init=10),
+              name="KMeans (3)", data=X)
+bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
+              name="KMeans (2)", data=X)
 
-# bench_k_means(KMeans(n_clusters=2), name="PCA-based (20)", data=PCA(n_components=2).fit(X).compents_)
-# # bench_k_means(KMeans(init=PCA(n_components=30).fit(X).components_, n_clusters=30,  n_init=1),
-# #               name="PCA-based (30)", data=X)
-# # bench_k_means(KMeans(init=PCA(n_components=40).fit(X).components_, n_clusters=40,  n_init=1),
-# #               name="PCA-based (40)", data=X)
-# # bench_k_means(KMeans(init=PCA(n_components=50).fit(X).components_, n_clusters=50,  n_init=1),
-# #               name="PCA-based (50)", data=X)
+pca = PCA(n_components=1).fit_transform(X)
+bench_k_means(KMeans(init='k-means++', n_clusters=3, n_init=10),
+              name="PCA (3)", data=pca)
+pca = PCA(n_components=1).fit_transform(X)
+bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
+              name="PCA (2)", data=pca)
 
-# print(42 * '_')
+print(42 * '_')
 
 
-# In[ ]:
+# In[17]:
 
 from sklearn.cluster import DBSCAN
 
-# #############################################################################
 # Compute DBSCAN
-db = DBSCAN(eps=0.3, min_samples=10).fit(X)
-core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
-core_samples_mask[db.core_sample_indices_] = True
-labels = db.labels_
+db = DBSCAN(eps=0.3).fit(X)
 
 # Number of clusters in labels, ignoring noise if present.
-n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
+n_clusters_ = len(set(db.labels_)) - (1 if -1 in db.labels_ else 0)
 
 print('Estimated number of clusters: %d' % n_clusters_)
-print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
+print("Silhouette Coefficient: %0.3f" %
+      metrics.silhouette_score(X, db.labels_, metric='euclidean', sample_size=10000))
 
 
 # In[ ]:
 
-from sklearn.cluster import AgglomerativeClustering
+# from sklearn.cluster import AgglomerativeClustering
+# from sklearn import manifold
 
-# #############################################################################
-# Compute clustering
-print("Compute unstructured hierarchical clustering...")
-st = time.time()
-ward = AgglomerativeClustering(n_clusters=6, linkage='ward').fit(X)
-elapsed_time = time.time() - st
-label = ward.labels_
+# # Compute clustering
+# print("Compute unstructured hierarchical clustering...")
+# # st = time.time()
 
-print("Elapsed time: %.2fs" % elapsed_time)
-print("Number of points: %i" % label.size)
 
-# #############################################################################
-# Define the structure A of the data. Here a 10 nearest neighbors
-from sklearn.neighbors import kneighbors_graph
-connectivity = kneighbors_graph(X, n_neighbors=10, include_self=False)
+# X_red = manifold.SpectralEmbedding(n_components=2).fit_transform(X)
 
-# #############################################################################
-# Compute clustering
-print("Compute structured hierarchical clustering...")
-st = time.time()
-ward = AgglomerativeClustering(n_clusters=6, connectivity=connectivity,
-                               linkage='ward').fit(X)
-elapsed_time = time.time() - st
-label = ward.labels_
-print("Elapsed time: %.2fs" % elapsed_time)
-print("Number of points: %i" % label.size)
+# clustering = AgglomerativeClustering(n_clusters=2, linkage='ward')
+# ward = clustering.fit(X_red)
+
+# # print("Elapsed time: %.2fs" % (time.time() - st))
+# print("Number of points: %i" % ward.labels_.size)
+
+# # # Define the structure A of the data. Here a 10 nearest neighbors
+# # from sklearn.neighbors import kneighbors_graph
+# # connectivity = kneighbors_graph(X, n_neighbors=10, include_self=False)
+
+# # # Compute clustering
+# # print("Compute structured hierarchical clustering...")
+# # st = time.time()
+# # ward = AgglomerativeClustering(n_clusters=6, connectivity=connectivity,
+# #                                linkage='ward').fit(X)
+# # elapsed_time = time.time() - st
+# # label = ward.labels_
+# # print("Elapsed time: %.2fs" % elapsed_time)
+# # print("Number of points: %i" % label.size)
+
+
+# In[ ]:
+
+
 

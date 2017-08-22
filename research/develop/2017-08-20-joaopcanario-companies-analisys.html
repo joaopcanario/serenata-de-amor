@@ -11805,10 +11805,21 @@ div#notebook {
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">100000</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="mi">10000</span>
+</pre></div>
 
-<span class="c1"># First, lets download all the needed datasets for this analysis</span>
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># First, lets download all the needed datasets for this analysis</span>
 <span class="n">datasets</span> <span class="o">=</span> <span class="n">Datasets</span><span class="p">(</span><span class="s1">&#39;../data/&#39;</span><span class="p">)</span>
-                             
+
 <span class="n">reimbursments_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../data/2017-07-04-reimbursements.xz&quot;</span><span class="p">)</span>
 <span class="n">companies_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../data/2017-05-21-companies-no-geolocation.xz&quot;</span><span class="p">)</span>
 
@@ -11826,7 +11837,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading companies dataset</span>
@@ -11837,7 +11848,7 @@ div#notebook {
                <span class="n">situation</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
                <span class="n">status</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
 
-<span class="n">companies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">companies_path</span><span class="p">),</span>
+<span class="n">companies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/2017-05-21-companies-no-geolocation.xz&#39;</span><span class="p">,</span>
                         <span class="n">dtype</span><span class="o">=</span><span class="n">CP_DTYPE</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                         <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;last_updated&#39;</span><span class="p">,</span> <span class="s1">&#39;situation_date&#39;</span><span class="p">,</span> <span class="s1">&#39;opening&#39;</span><span class="p">])</span>
 
@@ -11864,7 +11875,7 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -11994,7 +12005,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading reimbursments dataset</span>
@@ -12006,7 +12017,7 @@ div#notebook {
               <span class="n">subquota_number</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">,</span>
               <span class="n">party</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
 
-<span class="n">reimbursements</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">reimbursments_path</span><span class="p">),</span>
+<span class="n">reimbursements</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/2017-07-04-reimbursements.xz&#39;</span><span class="p">,</span>
                              <span class="n">dtype</span><span class="o">=</span><span class="n">R_DTYPE</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;issue_date&#39;</span><span class="p">])</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">reimbursements</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;total_net_value&#39;</span><span class="p">,</span> <span class="s1">&#39;party&#39;</span><span class="p">,</span>
@@ -12025,7 +12036,7 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12201,7 +12212,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># r.groupby([&#39;supplier&#39;, &#39;congressperson_name&#39;, &#39;year&#39;])[&#39;total_net_value&#39;].sum().sort_values(ascending=False).head(20)</span>
@@ -12221,7 +12232,7 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[4]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12551,7 +12562,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># count objects with invalid main_activity_code</span>
@@ -12577,12 +12588,12 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7f2f29636470&gt;</pre>
+<pre>&lt;matplotlib.text.Text at 0x7f2692478630&gt;</pre>
 </div>
 
 </div>
@@ -13066,7 +13077,7 @@ AAAAsCgKGwAAAABYFIUNAAAAACzq/wMQUUXV0vo36wAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove items with invalid main_activity_code</span>
@@ -13094,7 +13105,7 @@ AAAAsCgKGwAAAABYFIUNAAAAACzq/wMQUUXV0vo36wAAAABJRU5ErkJggg==
 </div>
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -13284,7 +13295,7 @@ AAAAsCgKGwAAAABYFIUNAAAAACzq/wMQUUXV0vo36wAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">,</span> <span class="s1">&#39;state_x&#39;</span><span class="p">,</span> <span class="s1">&#39;term&#39;</span><span class="p">,</span> <span class="s1">&#39;issue_date&#39;</span><span class="p">,</span> <span class="s1">&#39;congressperson_name&#39;</span><span class="p">,</span> 
@@ -13309,7 +13320,7 @@ AAAAsCgKGwAAAABYFIUNAAAAACzq/wMQUUXV0vo36wAAAABJRU5ErkJggg==
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
+<div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -13463,26 +13474,45 @@ AAAAsCgKGwAAAABYFIUNAAAAACzq/wMQUUXV0vo36wAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">scale</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
-<span class="c1"># Benchmark clusters</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># # Benchmark clusters</span>
+<span class="c1"># X, _, = train_test_split(df, train_size=0.1, random_state=2)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(256414, 19)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">time</span>
@@ -13490,60 +13520,96 @@ AAAAsCgKGwAAAABYFIUNAAAAACzq/wMQUUXV0vo36wAAAABJRU5ErkJggg==
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
 <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
 
-<span class="c1"># print(42 * &#39;_&#39;)</span>
-<span class="c1"># print(&#39;init\t\ttime\tinertia\tsilhouette&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">42</span> <span class="o">*</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;init</span><span class="se">\t\t</span><span class="s1">time</span><span class="se">\t</span><span class="s1">inertia</span><span class="se">\t</span><span class="s1">silhouette&#39;</span><span class="p">)</span>
 
-<span class="c1"># def bench_k_means(estimator, name, data, labels=0):</span>
-<span class="c1">#     t0 = time()</span>
-<span class="c1">#     print(&#39;antes do fit&#39;)</span>
-<span class="c1">#     estimator.fit(data)</span>
-<span class="c1">#     print(&#39;%-9s\t%.2fs\t%i\t%.3f&#39;</span>
-<span class="c1">#           % (name, (time() - t0), estimator.inertia_,</span>
-<span class="c1">#              metrics.silhouette_score(data, estimator.labels_, metric=&#39;euclidean&#39;)))</span>
+<span class="k">def</span> <span class="nf">bench_k_means</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%-9s</span><span class="se">\t</span><span class="si">%.2f</span><span class="s1">s</span><span class="se">\t</span><span class="si">%i</span><span class="se">\t</span><span class="si">%.3f</span><span class="s1">&#39;</span>
+          <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">),</span> <span class="n">estimator</span><span class="o">.</span><span class="n">inertia_</span><span class="p">,</span>
+             <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">estimator</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span>
+                                      <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span>
+                                      <span class="n">sample_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)))</span>
 
-<span class="c1"># bench_k_means(KMeans(n_clusters=2,  n_init=10), name=&quot;KMeans (20)&quot;, data=X)</span>
-<span class="c1"># # bench_k_means(KMeans(n_clusters=3), name=&quot;KMeans (30)&quot;, data=X)</span>
-<span class="c1"># # bench_k_means(KMeans(n_clusters=4), name=&quot;KMeans (40)&quot;, data=X)</span>
-<span class="c1"># # bench_k_means(KMeans(n_clusters=5), name=&quot;KMeans (50)&quot;, data=X)</span>
+<span class="n">bench_k_means</span><span class="p">(</span><span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+              <span class="n">name</span><span class="o">=</span><span class="s2">&quot;KMeans (3)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+<span class="n">bench_k_means</span><span class="p">(</span><span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+              <span class="n">name</span><span class="o">=</span><span class="s2">&quot;KMeans (2)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
 
-<span class="c1"># bench_k_means(KMeans(n_clusters=2), name=&quot;PCA-based (20)&quot;, data=PCA(n_components=2).fit(X).compents_)</span>
-<span class="c1"># # bench_k_means(KMeans(init=PCA(n_components=30).fit(X).components_, n_clusters=30,  n_init=1),</span>
-<span class="c1"># #               name=&quot;PCA-based (30)&quot;, data=X)</span>
-<span class="c1"># # bench_k_means(KMeans(init=PCA(n_components=40).fit(X).components_, n_clusters=40,  n_init=1),</span>
-<span class="c1"># #               name=&quot;PCA-based (40)&quot;, data=X)</span>
-<span class="c1"># # bench_k_means(KMeans(init=PCA(n_components=50).fit(X).components_, n_clusters=50,  n_init=1),</span>
-<span class="c1"># #               name=&quot;PCA-based (50)&quot;, data=X)</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">bench_k_means</span><span class="p">(</span><span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+              <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PCA (3)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">pca</span><span class="p">)</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">bench_k_means</span><span class="p">(</span><span class="n">KMeans</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+              <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PCA (2)&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">pca</span><span class="p">)</span>
 
-<span class="c1"># print(42 * &#39;_&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">42</span> <span class="o">*</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>__________________________________________
+init		time	inertia	silhouette
+KMeans (3)	3.52s	3493687	0.183
+KMeans (2)	2.44s	4159305	0.174
+PCA (3)  	0.56s	106282	0.690
+PCA (2)  	0.43s	388159	0.658
+__________________________________________
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">DBSCAN</span>
 
-<span class="c1"># #############################################################################</span>
 <span class="c1"># Compute DBSCAN</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">min_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">core_samples_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
-<span class="n">core_samples_mask</span><span class="p">[</span><span class="n">db</span><span class="o">.</span><span class="n">core_sample_indices_</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">labels_</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">DBSCAN</span><span class="p">(</span><span class="n">eps</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Number of clusters in labels, ignoring noise if present.</span>
-<span class="n">n_clusters_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">labels</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">n_clusters_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">labels_</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">labels_</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Estimated number of clusters: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">n_clusters_</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Silhouette Coefficient: </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Silhouette Coefficient: </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span>
+      <span class="n">metrics</span><span class="o">.</span><span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">))</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Estimated number of clusters: 180
+Silhouette Coefficient: -0.323
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13553,34 +13619,64 @@ AAAAsCgKGwAAAABYFIUNAAAAACzq/wMQUUXV0vo36wAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">AgglomerativeClustering</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from sklearn.cluster import AgglomerativeClustering</span>
+<span class="c1"># from sklearn import manifold</span>
 
-<span class="c1"># #############################################################################</span>
-<span class="c1"># Compute clustering</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Compute unstructured hierarchical clustering...&quot;</span><span class="p">)</span>
-<span class="n">st</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">ward</span> <span class="o">=</span> <span class="n">AgglomerativeClustering</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">linkage</span><span class="o">=</span><span class="s1">&#39;ward&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">st</span>
-<span class="n">label</span> <span class="o">=</span> <span class="n">ward</span><span class="o">.</span><span class="n">labels_</span>
+<span class="c1"># # Compute clustering</span>
+<span class="c1"># print(&quot;Compute unstructured hierarchical clustering...&quot;)</span>
+<span class="c1"># # st = time.time()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Elapsed time: </span><span class="si">%.2f</span><span class="s2">s&quot;</span> <span class="o">%</span> <span class="n">elapsed_time</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of points: </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">label</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 
-<span class="c1"># #############################################################################</span>
-<span class="c1"># Define the structure A of the data. Here a 10 nearest neighbors</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="k">import</span> <span class="n">kneighbors_graph</span>
-<span class="n">connectivity</span> <span class="o">=</span> <span class="n">kneighbors_graph</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">include_self</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># X_red = manifold.SpectralEmbedding(n_components=2).fit_transform(X)</span>
 
-<span class="c1"># #############################################################################</span>
-<span class="c1"># Compute clustering</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Compute structured hierarchical clustering...&quot;</span><span class="p">)</span>
-<span class="n">st</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">ward</span> <span class="o">=</span> <span class="n">AgglomerativeClustering</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">connectivity</span><span class="o">=</span><span class="n">connectivity</span><span class="p">,</span>
-                               <span class="n">linkage</span><span class="o">=</span><span class="s1">&#39;ward&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">st</span>
-<span class="n">label</span> <span class="o">=</span> <span class="n">ward</span><span class="o">.</span><span class="n">labels_</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Elapsed time: </span><span class="si">%.2f</span><span class="s2">s&quot;</span> <span class="o">%</span> <span class="n">elapsed_time</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of points: </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">label</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="c1"># clustering = AgglomerativeClustering(n_clusters=2, linkage=&#39;ward&#39;)</span>
+<span class="c1"># ward = clustering.fit(X_red)</span>
+
+<span class="c1"># # print(&quot;Elapsed time: %.2fs&quot; % (time.time() - st))</span>
+<span class="c1"># print(&quot;Number of points: %i&quot; % ward.labels_.size)</span>
+
+<span class="c1"># # # Define the structure A of the data. Here a 10 nearest neighbors</span>
+<span class="c1"># # from sklearn.neighbors import kneighbors_graph</span>
+<span class="c1"># # connectivity = kneighbors_graph(X, n_neighbors=10, include_self=False)</span>
+
+<span class="c1"># # # Compute clustering</span>
+<span class="c1"># # print(&quot;Compute structured hierarchical clustering...&quot;)</span>
+<span class="c1"># # st = time.time()</span>
+<span class="c1"># # ward = AgglomerativeClustering(n_clusters=6, connectivity=connectivity,</span>
+<span class="c1"># #                                linkage=&#39;ward&#39;).fit(X)</span>
+<span class="c1"># # elapsed_time = time.time() - st</span>
+<span class="c1"># # label = ward.labels_</span>
+<span class="c1"># # print(&quot;Elapsed time: %.2fs&quot; % elapsed_time)</span>
+<span class="c1"># # print(&quot;Number of points: %i&quot; % label.size)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Compute unstructured hierarchical clustering...
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
