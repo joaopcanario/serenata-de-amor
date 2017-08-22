@@ -11785,7 +11785,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">serenata_toolbox.datasets</span> <span class="k">import</span> <span class="n">Datasets</span>
@@ -11838,7 +11838,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading companies dataset</span>
@@ -11882,7 +11882,7 @@ div#notebook {
 </div>
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[73]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -11946,7 +11946,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loading reimbursments dataset</span>
@@ -11974,7 +11974,7 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[45]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12073,7 +12073,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filtered_c</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">cnpj</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">cnpj</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
@@ -12091,7 +12091,7 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[74]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12223,7 +12223,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># count objects with invalid main_activity_code</span>
@@ -12249,12 +12249,12 @@ div#notebook {
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[75]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7ff5da045a58&gt;</pre>
+<pre>&lt;matplotlib.text.Text at 0x7f4d086bb160&gt;</pre>
 </div>
 
 </div>
@@ -12713,7 +12713,7 @@ KYINAAAAAGyKYAMAAAAAmyLYAAAAAMCmCDYAAAAAsKn/DyLKoS4txzD6AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove items with invalid main_activity_code</span>
@@ -12741,7 +12741,7 @@ KYINAAAAAGyKYAMAAAAAmyLYAAAAAMCmCDYAAAAAsKn/DyLKoS4txzD6AAAAAElFTkSuQmCC
 </div>
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[76]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12823,11 +12823,10 @@ KYINAAAAAGyKYAMAAAAAmyLYAAAAAMCmCDYAAAAAsKn/DyLKoS4txzD6AAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subquota_description&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier&#39;</span><span class="p">,</span> <span class="s1">&#39;cnpj&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
-          <span class="s1">&#39;main_activity_code&#39;</span><span class="p">,</span> <span class="s1">&#39;situation&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;subquota_description&#39;</span><span class="p">,</span> <span class="s1">&#39;supplier&#39;</span><span class="p">,</span> <span class="s1">&#39;cnpj&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;main_activity_code&#39;</span><span class="p">]</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">data</span>
 <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
@@ -12847,82 +12846,80 @@ KYINAAAAAGyKYAMAAAAAmyLYAAAAAMCmCDYAAAAAsKn/DyLKoS4txzD6AAAAAElFTkSuQmCC
 
 
 <div class="output_area">
-<div class="prompt"></div>
+<div class="prompt output_prompt">Out[8]:</div>
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg">/opt/conda/lib/python3.5/site-packages/pandas/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2133</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2134</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2135</span>             <span class="ansi-green-fg">except</span> KeyError<span class="ansi-blue-fg">:</span>
 
-<span class="ansi-green-fg">pandas/index.pyx</span> in <span class="ansi-cyan-fg">pandas.index.IndexEngine.get_loc (pandas/index.c:4433)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/index.pyx</span> in <span class="ansi-cyan-fg">pandas.index.IndexEngine.get_loc (pandas/index.c:4279)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/src/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13742)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/src/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13696)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-red-fg">KeyError</span>: &#39;situation&#39;
-
-During handling of the above exception, another exception occurred:
-
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-77-341751dea85a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> df <span class="ansi-blue-fg">=</span> data
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">for</span> l <span class="ansi-green-fg">in</span> labels<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg">     </span>df<span class="ansi-blue-fg">[</span>l<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> data<span class="ansi-blue-fg">[</span>l<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;category&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>cat<span class="ansi-blue-fg">.</span>codes
-<span class="ansi-green-intense-fg ansi-bold">      7</span> 
-<span class="ansi-green-intense-fg ansi-bold">      8</span> df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;opening&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> df<span class="ansi-blue-fg">.</span>opening<span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span>np<span class="ansi-blue-fg">.</span>str<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>str<span class="ansi-blue-fg">.</span>replace<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">r&#39;\D+&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>astype<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;category&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>cat<span class="ansi-blue-fg">.</span>codes
-
-<span class="ansi-green-fg">/opt/conda/lib/python3.5/site-packages/pandas/core/frame.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2057</span>             <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_getitem_multilevel<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2058</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2059</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_getitem_column<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2060</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2061</span>     <span class="ansi-green-fg">def</span> _getitem_column<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">/opt/conda/lib/python3.5/site-packages/pandas/core/frame.py</span> in <span class="ansi-cyan-fg">_getitem_column</span><span class="ansi-blue-fg">(self, key)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2064</span>         <span class="ansi-red-fg"># get column</span>
-<span class="ansi-green-intense-fg ansi-bold">   2065</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>is_unique<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2066</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_get_item_cache<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2067</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2068</span>         <span class="ansi-red-fg"># duplicate columns &amp; possible reduce dimensionality</span>
-
-<span class="ansi-green-fg">/opt/conda/lib/python3.5/site-packages/pandas/core/generic.py</span> in <span class="ansi-cyan-fg">_get_item_cache</span><span class="ansi-blue-fg">(self, item)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1384</span>         res <span class="ansi-blue-fg">=</span> cache<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1385</span>         <span class="ansi-green-fg">if</span> res <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1386</span><span class="ansi-red-fg">             </span>values <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_data<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1387</span>             res <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_box_item_values<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">,</span> values<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1388</span>             cache<span class="ansi-blue-fg">[</span>item<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> res
-
-<span class="ansi-green-fg">/opt/conda/lib/python3.5/site-packages/pandas/core/internals.py</span> in <span class="ansi-cyan-fg">get</span><span class="ansi-blue-fg">(self, item, fastpath)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3541</span> 
-<span class="ansi-green-intense-fg ansi-bold">   3542</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> isnull<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 3543</span><span class="ansi-red-fg">                 </span>loc <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   3544</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   3545</span>                 indexer <span class="ansi-blue-fg">=</span> np<span class="ansi-blue-fg">.</span>arange<span class="ansi-blue-fg">(</span>len<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span>isnull<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">/opt/conda/lib/python3.5/site-packages/pandas/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2134</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2135</span>             <span class="ansi-green-fg">except</span> KeyError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2136</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_maybe_cast_indexer<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2137</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2138</span>         indexer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>get_indexer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span>key<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">=</span>method<span class="ansi-blue-fg">,</span> tolerance<span class="ansi-blue-fg">=</span>tolerance<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">pandas/index.pyx</span> in <span class="ansi-cyan-fg">pandas.index.IndexEngine.get_loc (pandas/index.c:4433)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/index.pyx</span> in <span class="ansi-cyan-fg">pandas.index.IndexEngine.get_loc (pandas/index.c:4279)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/src/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13742)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/src/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13696)</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-red-fg">KeyError</span>: &#39;situation&#39;</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_net_value</th>
+      <th>subquota_description</th>
+      <th>supplier</th>
+      <th>cnpj</th>
+      <th>main_activity_code</th>
+      <th>name</th>
+      <th>opening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3000.00</td>
+      <td>11</td>
+      <td>15492</td>
+      <td>19504</td>
+      <td>36</td>
+      <td>323</td>
+      <td>8410</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>140.00</td>
+      <td>2</td>
+      <td>8884</td>
+      <td>3543</td>
+      <td>238</td>
+      <td>8163</td>
+      <td>5486</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>160.67</td>
+      <td>5</td>
+      <td>17221</td>
+      <td>307</td>
+      <td>155</td>
+      <td>15517</td>
+      <td>4598</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2600.00</td>
+      <td>7</td>
+      <td>19841</td>
+      <td>17979</td>
+      <td>301</td>
+      <td>17728</td>
+      <td>8270</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>78.70</td>
+      <td>5</td>
+      <td>5973</td>
+      <td>779</td>
+      <td>155</td>
+      <td>5307</td>
+      <td>4723</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>
@@ -12931,7 +12928,7 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
@@ -12953,12 +12950,12 @@ During handling of the above exception, another exception occurred:
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[62]:</div>
+<div class="prompt output_prompt">Out[9]:</div>
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(45480, 9)</pre>
+<pre>(45901, 7)</pre>
 </div>
 
 </div>
@@ -12969,7 +12966,7 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">time</span>
@@ -13015,10 +13012,10 @@ During handling of the above exception, another exception occurred:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>__________________________________________
 init		time	inertia	silhouette
-KMeans (3)	0.41s	6698128175130	0.363
-KMeans (2)	0.24s	9339146530642	0.423
-PCA (3)  	0.25s	872276474368	0.644
-PCA (2)  	0.13s	1841830558555	0.693
+KMeans (3)	0.43s	6883354457040	0.393
+KMeans (2)	0.22s	9636540200660	0.401
+PCA (3)  	0.31s	901515930606	0.599
+PCA (2)  	0.13s	1881361763667	0.674
 __________________________________________
 </pre>
 </div>
@@ -13030,7 +13027,7 @@ __________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="k">import</span> <span class="n">DBSCAN</span>
@@ -13058,8 +13055,8 @@ __________________________________________
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Estimated number of clusters: 542
-Silhouette Coefficient: -0.631
+<pre>Estimated number of clusters: 555
+Silhouette Coefficient: -0.655
 </pre>
 </div>
 </div>

@@ -5,7 +5,7 @@
 # 
 # This notebook provides an exploratory analysis on companies with the same name but different CNPJ's. On this analysis it'll be tried to know more about their existence through an exploratory analysis, and possibly get more insights for new irregularities.
 
-# In[35]:
+# In[1]:
 
 from serenata_toolbox.datasets import Datasets
 from pylab import rcParams
@@ -42,7 +42,7 @@ if not companies_path.exists():
     datasets.downloader.download('2017-05-21-companies-no-geolocation.xz')
 
 
-# In[73]:
+# In[3]:
 
 # Loading companies dataset
 CP_DTYPE =dict(cnpj=np.str, name=np.str, main_activity_code=np.str,
@@ -67,7 +67,7 @@ print(c.shape)
 c.head(5)
 
 
-# In[45]:
+# In[4]:
 
 # Loading reimbursments dataset
 R_DTYPE =dict(cnpj_cpf=np.str, supplier=np.str, total_net_value=np.float,
@@ -85,7 +85,7 @@ r = r[r.cnpj.str.len() == 14]
 r.head(10)
 
 
-# In[74]:
+# In[5]:
 
 filtered_c = c[c.cnpj.isin(r.cnpj.unique())]
 data = r.merge(filtered_c, on='cnpj', how='left')
@@ -93,7 +93,7 @@ data = r.merge(filtered_c, on='cnpj', how='left')
 data.head(10)
 
 
-# In[75]:
+# In[6]:
 
 # count objects with invalid main_activity_code
 d = dict()
@@ -109,7 +109,7 @@ s.plot(kind='pie', autopct='%.2f')
 plt.title('Number of valid and invalid main_activity_code in dataset')
 
 
-# In[76]:
+# In[7]:
 
 # remove items with invalid main_activity_code
 data = data[data.main_activity_code != "0000000"]
@@ -118,10 +118,9 @@ print('dataset shape: {}.'.format(data.shape))
 data.head(5)
 
 
-# In[77]:
+# In[8]:
 
-labels = ['subquota_description', 'supplier', 'cnpj', 'name',
-          'main_activity_code', 'situation', 'status']
+labels = ['subquota_description', 'supplier', 'cnpj', 'name', 'main_activity_code']
 
 df = data
 for l in labels:
@@ -132,7 +131,7 @@ df['opening'] = df.opening.astype(np.str).str.replace(r'\D+', '').astype('catego
 df.head()
 
 
-# In[62]:
+# In[9]:
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale
@@ -144,7 +143,7 @@ X, _, = train_test_split(df, train_size=0.1, random_state=2)
 X.shape
 
 
-# In[66]:
+# In[10]:
 
 from time import time
 from sklearn import metrics
@@ -175,7 +174,7 @@ bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
 print(42 * '_')
 
 
-# In[67]:
+# In[11]:
 
 from sklearn.cluster import DBSCAN
 
