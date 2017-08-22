@@ -5,7 +5,7 @@
 # 
 # This notebook provides an exploratory analysis on companies with the same name but different CNPJ's. On this analysis it'll be tried to know more about their existence through an exploratory analysis, and possibly get more insights for new irregularities.
 
-# In[ ]:
+# In[1]:
 
 from serenata_toolbox.datasets import Datasets
 from pylab import rcParams
@@ -38,7 +38,7 @@ if not companies_path.exists():
     datasets.downloader.download('2017-05-21-companies-no-geolocation.xz')
 
 
-# In[ ]:
+# In[2]:
 
 # Loading companies dataset
 CP_DTYPE =dict(cnpj=np.str, name=np.str,
@@ -66,7 +66,7 @@ c.columns.values[0] = 'cnpj_cpf'
 c.head(5)
 
 
-# In[ ]:
+# In[3]:
 
 # Loading reimbursments dataset
 R_DTYPE =dict(cnpj_cpf=np.str, year=np.int16, month=np.int16,
@@ -87,7 +87,7 @@ r = reimbursements[['year', 'month', 'total_net_value', 'party',
 r.head(10)
 
 
-# In[ ]:
+# In[4]:
 
 # r.groupby(['supplier', 'congressperson_name', 'year'])['total_net_value'].sum().sort_values(ascending=False).head(20)
 filtered_c = c[c['cnpj_cpf'].isin(r.cnpj_cpf.unique())]
@@ -97,7 +97,7 @@ data = data[data.year >= 2016]
 data.head(10)
 
 
-# In[ ]:
+# In[5]:
 
 # count objects with invalid main_activity_code
 d = dict()
@@ -113,7 +113,7 @@ s.plot(kind='pie', autopct='%.2f')
 plt.title('Number of valid and invalid main_activity_code in dataset')
 
 
-# In[ ]:
+# In[6]:
 
 # remove items with invalid main_activity_code
 data = data[data.main_activity_code != "00.00-0-00"]
@@ -122,7 +122,7 @@ print('dataset shape: {}.'.format(data.shape))
 data.head(5)
 
 
-# In[ ]:
+# In[7]:
 
 labels = ['party', 'state_x', 'term', 'issue_date', 'congressperson_name', 
           'subquota_description', 'supplier', 'cnpj_cpf', 'legal_entity', 
@@ -152,7 +152,30 @@ df = scale(df)
 # Benchmark clusters
 X, _, = train_test_split(df, train_size=0.2, random_state=2)
 
-X.shape
+print(42 * '_')
+print('init\t\ttime\tinertia\tsilhouette')
+
+def bench_k_means(estimator, name, data, labels=0):
+    t0 = time()
+    estimator.fit(data)
+    print('%-9s\t%.2fs\t%i\t%.3f'
+          % (name, (time() - t0), estimator.inertia_,
+             metrics.silhouette_score(data, estimator.labels_, metric='euclidean')))
+
+bench_k_means(KMeans(n_clusters=2,  n_init=10), name="KMeans (20)", data=X)
+# bench_k_means(KMeans(n_clusters=3), name="KMeans (30)", data=X)
+# bench_k_means(KMeans(n_clusters=4), name="KMeans (40)", data=X)
+# bench_k_means(KMeans(n_clusters=5), name="KMeans (50)", data=X)
+
+bench_k_means(KMeans(n_clusters=2), name="PCA-based (20)", data=PCA(n_components=2).fit(X).compents_)
+# bench_k_means(KMeans(init=PCA(n_components=30).fit(X).components_, n_clusters=30,  n_init=1),
+#               name="PCA-based (30)", data=X)
+# bench_k_means(KMeans(init=PCA(n_components=40).fit(X).components_, n_clusters=40,  n_init=1),
+#               name="PCA-based (40)", data=X)
+# bench_k_means(KMeans(init=PCA(n_components=50).fit(X).components_, n_clusters=50,  n_init=1),
+#               name="PCA-based (50)", data=X)
+
+print(42 * '_')
 
 
 # In[ ]:
@@ -164,7 +187,6 @@ def bench_k_means(estimator, name, data, labels=0):
     t0 = time()
     print('antes do fit')
     estimator.fit(data)
-    print('depois do fit')
     print('%-9s\t%.2fs\t%i\t%.3f'
           % (name, (time() - t0), estimator.inertia_,
              metrics.silhouette_score(data, estimator.labels_, metric='euclidean')))
