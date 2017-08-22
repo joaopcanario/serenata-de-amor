@@ -133,8 +133,19 @@ labels = ['party', 'state_x', 'term', 'issue_date', 'congressperson_name',
 df = pd.DataFrame()
 for l in labels:
     df[l] = data[l].astype('category').cat.codes
-
+    
 df.head()
+
+
+# In[8]:
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import scale
+
+df = scale(df)
+
+# Benchmark clusters
+X, _, = train_test_split(df, train_size=0.2, random_state=2)
 
 
 # In[ ]:
@@ -143,71 +154,80 @@ from time import time
 from sklearn import metrics
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-from sklearn.model_selection import train_test_split
 
-from sklearn.preprocessing import scale
+# print(42 * '_')
+# print('init\t\ttime\tinertia\tsilhouette')
 
-df = scale(df)
+# def bench_k_means(estimator, name, data, labels=0):
+#     t0 = time()
+#     print('antes do fit')
+#     estimator.fit(data)
+#     print('%-9s\t%.2fs\t%i\t%.3f'
+#           % (name, (time() - t0), estimator.inertia_,
+#              metrics.silhouette_score(data, estimator.labels_, metric='euclidean')))
 
-# Benchmark clusters
-X, _, = train_test_split(df, train_size=0.2, random_state=2)
+# bench_k_means(KMeans(n_clusters=2,  n_init=10), name="KMeans (20)", data=X)
+# # bench_k_means(KMeans(n_clusters=3), name="KMeans (30)", data=X)
+# # bench_k_means(KMeans(n_clusters=4), name="KMeans (40)", data=X)
+# # bench_k_means(KMeans(n_clusters=5), name="KMeans (50)", data=X)
 
-print(42 * '_')
-print('init\t\ttime\tinertia\tsilhouette')
+# bench_k_means(KMeans(n_clusters=2), name="PCA-based (20)", data=PCA(n_components=2).fit(X).compents_)
+# # bench_k_means(KMeans(init=PCA(n_components=30).fit(X).components_, n_clusters=30,  n_init=1),
+# #               name="PCA-based (30)", data=X)
+# # bench_k_means(KMeans(init=PCA(n_components=40).fit(X).components_, n_clusters=40,  n_init=1),
+# #               name="PCA-based (40)", data=X)
+# # bench_k_means(KMeans(init=PCA(n_components=50).fit(X).components_, n_clusters=50,  n_init=1),
+# #               name="PCA-based (50)", data=X)
 
-def bench_k_means(estimator, name, data, labels=0):
-    t0 = time()
-    estimator.fit(data)
-    print('%-9s\t%.2fs\t%i\t%.3f'
-          % (name, (time() - t0), estimator.inertia_,
-             metrics.silhouette_score(data, estimator.labels_, metric='euclidean')))
-
-bench_k_means(KMeans(n_clusters=2,  n_init=10), name="KMeans (20)", data=X)
-# bench_k_means(KMeans(n_clusters=3), name="KMeans (30)", data=X)
-# bench_k_means(KMeans(n_clusters=4), name="KMeans (40)", data=X)
-# bench_k_means(KMeans(n_clusters=5), name="KMeans (50)", data=X)
-
-bench_k_means(KMeans(n_clusters=2), name="PCA-based (20)", data=PCA(n_components=2).fit(X).compents_)
-# bench_k_means(KMeans(init=PCA(n_components=30).fit(X).components_, n_clusters=30,  n_init=1),
-#               name="PCA-based (30)", data=X)
-# bench_k_means(KMeans(init=PCA(n_components=40).fit(X).components_, n_clusters=40,  n_init=1),
-#               name="PCA-based (40)", data=X)
-# bench_k_means(KMeans(init=PCA(n_components=50).fit(X).components_, n_clusters=50,  n_init=1),
-#               name="PCA-based (50)", data=X)
-
-print(42 * '_')
+# print(42 * '_')
 
 
 # In[ ]:
 
-print(42 * '_')
-print('init\t\ttime\tinertia\tsilhouette')
+from sklearn.cluster import DBSCAN
 
-def bench_k_means(estimator, name, data, labels=0):
-    t0 = time()
-    print('antes do fit')
-    estimator.fit(data)
-    print('%-9s\t%.2fs\t%i\t%.3f'
-          % (name, (time() - t0), estimator.inertia_,
-             metrics.silhouette_score(data, estimator.labels_, metric='euclidean')))
+# #############################################################################
+# Compute DBSCAN
+db = DBSCAN(eps=0.3, min_samples=10).fit(X)
+core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
+core_samples_mask[db.core_sample_indices_] = True
+labels = db.labels_
 
-bench_k_means(KMeans(n_clusters=2,  n_init=10), name="KMeans (20)", data=X)
-# bench_k_means(KMeans(n_clusters=3), name="KMeans (30)", data=X)
-# bench_k_means(KMeans(n_clusters=4), name="KMeans (40)", data=X)
-# bench_k_means(KMeans(n_clusters=5), name="KMeans (50)", data=X)
+# Number of clusters in labels, ignoring noise if present.
+n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
 
-bench_k_means(KMeans(n_clusters=2), name="PCA-based (20)", data=PCA(n_components=2).fit(X).compents_)
-# bench_k_means(KMeans(init=PCA(n_components=30).fit(X).components_, n_clusters=30,  n_init=1),
-#               name="PCA-based (30)", data=X)
-# bench_k_means(KMeans(init=PCA(n_components=40).fit(X).components_, n_clusters=40,  n_init=1),
-#               name="PCA-based (40)", data=X)
-# bench_k_means(KMeans(init=PCA(n_components=50).fit(X).components_, n_clusters=50,  n_init=1),
-#               name="PCA-based (50)", data=X)
-
-print(42 * '_')
+print('Estimated number of clusters: %d' % n_clusters_)
+print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(X, labels))
 
 
 # In[ ]:
 
+from sklearn.cluster import AgglomerativeClustering
 
+# #############################################################################
+# Compute clustering
+print("Compute unstructured hierarchical clustering...")
+st = time.time()
+ward = AgglomerativeClustering(n_clusters=6, linkage='ward').fit(X)
+elapsed_time = time.time() - st
+label = ward.labels_
+
+print("Elapsed time: %.2fs" % elapsed_time)
+print("Number of points: %i" % label.size)
+
+# #############################################################################
+# Define the structure A of the data. Here a 10 nearest neighbors
+from sklearn.neighbors import kneighbors_graph
+connectivity = kneighbors_graph(X, n_neighbors=10, include_self=False)
+
+# #############################################################################
+# Compute clustering
+print("Compute structured hierarchical clustering...")
+st = time.time()
+ward = AgglomerativeClustering(n_clusters=6, connectivity=connectivity,
+                               linkage='ward').fit(X)
+elapsed_time = time.time() - st
+label = ward.labels_
+print("Elapsed time: %.2fs" % elapsed_time)
+print("Number of points: %i" % label.size)
 
