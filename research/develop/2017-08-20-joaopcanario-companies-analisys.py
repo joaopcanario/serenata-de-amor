@@ -7,6 +7,7 @@
 
 # In[1]:
 
+
 from serenata_toolbox.datasets import Datasets
 from pylab import rcParams
 from pathlib import Path
@@ -29,11 +30,12 @@ pd.options.display.max_columns = 10000
 
 # In[2]:
 
-# First, lets download all the needed datasets for this analysis
-datasets = Datasets('../data/')
 
-reimbursments_path = Path("../data/2017-07-04-reimbursements.xz")
-companies_path = Path("../data/2017-05-21-companies-no-geolocation.xz")
+# First, lets download all the needed datasets for this analysis
+datasets = Datasets('../../research/data/')
+
+reimbursments_path = Path('../../research/data/2017-07-04-reimbursements.xz')
+companies_path = Path('../../research/data/2017-05-21-companies-no-geolocation.xz')
 
 if not reimbursments_path.exists():
     datasets.downloader.download('2017-07-04-reimbursements.xz')
@@ -44,11 +46,12 @@ if not companies_path.exists():
 
 # In[3]:
 
+
 # Loading companies dataset
 CP_DTYPE =dict(cnpj=np.str, name=np.str, main_activity_code=np.str,
                legal_entity='category', situation='category', status='category')
 
-companies = pd.read_csv('../data/2017-05-21-companies-no-geolocation.xz', dtype=CP_DTYPE,
+companies = pd.read_csv(str(companies_path), dtype=CP_DTYPE,
                         low_memory=False, parse_dates=['last_updated', 'situation_date', 'opening'])
 
 c = companies[['cnpj', 'main_activity_code', 'name', 'opening', 'situation', 'status']]
@@ -69,11 +72,12 @@ c.head(5)
 
 # In[4]:
 
+
 # Loading reimbursments dataset
 R_DTYPE =dict(cnpj_cpf=np.str, supplier=np.str, total_net_value=np.float,
               subquota_group_description='category')
 
-reimbursements = pd.read_csv('../data/2017-07-04-reimbursements.xz',
+reimbursements = pd.read_csv(str(reimbursments_path),
                              dtype=R_DTYPE, low_memory=False, parse_dates=['issue_date'])
 
 r = reimbursements[reimbursements.year >= 2015]
@@ -87,6 +91,7 @@ r.head(10)
 
 # In[5]:
 
+
 filtered_c = c[c.cnpj.isin(r.cnpj.unique())]
 data = r.merge(filtered_c, on='cnpj', how='left')
 
@@ -94,6 +99,7 @@ data.head(10)
 
 
 # In[6]:
+
 
 # count objects with invalid main_activity_code
 d = dict()
@@ -111,6 +117,7 @@ plt.title('Number of valid and invalid main_activity_code in dataset')
 
 # In[7]:
 
+
 # remove items with invalid main_activity_code
 data = data[data.main_activity_code != "0000000"]
 print('dataset shape: {}.'.format(data.shape))
@@ -119,6 +126,7 @@ data.head(5)
 
 
 # In[8]:
+
 
 labels = ['subquota_description', 'supplier', 'cnpj', 'name', 'main_activity_code']
 
@@ -133,6 +141,7 @@ df.head()
 
 # In[9]:
 
+
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import scale
 
@@ -144,6 +153,7 @@ X.shape
 
 
 # In[10]:
+
 
 from time import time
 from sklearn import metrics
@@ -159,22 +169,31 @@ def bench_k_means(estimator, name, data, labels=0):
     avg = metrics.silhouette_score(data, estimator.labels_, metric='euclidean', sample_size=500)
     print('%-9s\t%.2fs\t%i\t%.3f' % (name, (time() - t0), estimator.inertia_, avg))
 
-bench_k_means(KMeans(init='k-means++', n_clusters=3, n_init=10),
-              name="KMeans (3)", data=X)
+    
 bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
               name="KMeans (2)", data=X)
+bench_k_means(KMeans(init='k-means++', n_clusters=20, n_init=10),
+              name="KMeans (20)", data=X)
+bench_k_means(KMeans(init='k-means++', n_clusters=200, n_init=10),
+              name="KMeans (200)", data=X)
+bench_k_means(KMeans(init='k-means++', n_clusters=2000, n_init=10),
+              name="KMeans (2000)", data=X)
 
-pca = PCA(n_components=1).fit_transform(X)
-bench_k_means(KMeans(init='k-means++', n_clusters=3, n_init=10),
-              name="PCA (3)", data=pca)
 pca = PCA(n_components=1).fit_transform(X)
 bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
               name="PCA (2)", data=pca)
+bench_k_means(KMeans(init='k-means++', n_clusters=20, n_init=10),
+              name="PCA (20)", data=pca)
+bench_k_means(KMeans(init='k-means++', n_clusters=200, n_init=10),
+              name="PCA (200)", data=pca)
+bench_k_means(KMeans(init='k-means++', n_clusters=2000, n_init=10),
+              name="PCA (2000)", data=pca)
 
 print(42 * '_')
 
 
 # In[11]:
+
 
 from sklearn.cluster import DBSCAN
 
@@ -190,6 +209,7 @@ print("Silhouette Coefficient: %0.3f" %
 
 
 # In[ ]:
+
 
 
 
