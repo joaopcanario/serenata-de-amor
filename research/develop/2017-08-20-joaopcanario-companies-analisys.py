@@ -18,6 +18,7 @@ import pandas as pd
 import numpy as np
 
 get_ipython().magic('matplotlib inline')
+get_ipython().magic('autosave 0')
 
 # Charts styling
 plt.style.use('ggplot')
@@ -148,11 +149,11 @@ from sklearn.preprocessing import scale
 X = scale(df)
 
 # # Benchmark clusters
-X, _, = train_test_split(df, train_size=0.1, random_state=2)
+# X, _, = train_test_split(df, train_size=0.1, random_state=2)
 X.shape
 
 
-# In[10]:
+# In[12]:
 
 
 from time import time
@@ -160,52 +161,66 @@ from sklearn import metrics
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 
-print(42 * '_')
-print('init\t\ttime\tinertia\tsilhouette')
+print(35 * '_')
+print('init\t\ttime\tsilhouette')
 
 def bench_k_means(estimator, name, data, labels=0):
     t0 = time()
     estimator.fit(data)
     avg = metrics.silhouette_score(data, estimator.labels_, metric='euclidean', sample_size=500)
-    print('%-9s\t%.2fs\t%i\t%.3f' % (name, (time() - t0), estimator.inertia_, avg))
-
+    print('%-9s\t%.2fs\t%.3f' % (name, (time() - t0), avg))
     
-bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
-              name="KMeans (2)", data=X)
-bench_k_means(KMeans(init='k-means++', n_clusters=20, n_init=10),
-              name="KMeans (20)", data=X)
-bench_k_means(KMeans(init='k-means++', n_clusters=200, n_init=10),
-              name="KMeans (200)", data=X)
-bench_k_means(KMeans(init='k-means++', n_clusters=2000, n_init=10),
-              name="KMeans (2000)", data=X)
+    return avg
+
+
+ks = []
+ks.append(bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
+                        name="KMeans (2)", data=X))
+ks.append(bench_k_means(KMeans(init='k-means++', n_clusters=20, n_init=10),
+                        name="KMeans (20)", data=X))
+ks.append(bench_k_means(KMeans(init='k-means++', n_clusters=60, n_init=10),
+                        name="KMeans (60)", data=X))
+ks.append(bench_k_means(KMeans(init='k-means++', n_clusters=180, n_init=10),
+                        name="KMeans (180)", data=X))
 
 pca = PCA(n_components=1).fit_transform(X)
-bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
-              name="PCA (2)", data=pca)
-bench_k_means(KMeans(init='k-means++', n_clusters=20, n_init=10),
-              name="PCA (20)", data=pca)
-bench_k_means(KMeans(init='k-means++', n_clusters=200, n_init=10),
-              name="PCA (200)", data=pca)
-bench_k_means(KMeans(init='k-means++', n_clusters=2000, n_init=10),
-              name="PCA (2000)", data=pca)
+kmeans_pca = []
+kmeans_pca.append(bench_k_means(KMeans(init='k-means++', n_clusters=2, n_init=10),
+                                name="PCA (2)", data=pca))
+kmeans_pca.append(bench_k_means(KMeans(init='k-means++', n_clusters=20, n_init=10),
+                                name="PCA (20)", data=pca))
+kmeans_pca.append(bench_k_means(KMeans(init='k-means++', n_clusters=60, n_init=10),
+                                name="PCA (60)", data=pca))
+kmeans_pca.append(bench_k_means(KMeans(init='k-means++', n_clusters=180, n_init=10),
+                                name="PCA (180)", data=pca))
 
-print(42 * '_')
+print(35 * '_')
 
 
 # In[11]:
 
 
-from sklearn.cluster import DBSCAN
+# from sklearn.cluster import DBSCAN
 
-# Compute DBSCAN
-db = DBSCAN(eps=0.3).fit(X)
+# # Compute DBSCAN
+# db = DBSCAN(eps=0.3).fit(X)
 
-# Number of clusters in labels, ignoring noise if present.
-n_clusters_ = len(set(db.labels_)) - (1 if -1 in db.labels_ else 0)
+# # Number of clusters in labels, ignoring noise if present.
+# n_clusters_ = len(set(db.labels_)) - (1 if -1 in db.labels_ else 0)
 
-print('Estimated number of clusters: %d' % n_clusters_)
-print("Silhouette Coefficient: %0.3f" %
-      metrics.silhouette_score(X, db.labels_, metric='euclidean', sample_size=500))
+# print('Estimated number of clusters: %d' % n_clusters_)
+# print("Silhouette Coefficient: %0.3f" %
+#       metrics.silhouette_score(X, db.labels_, metric='euclidean', sample_size=500))
+
+
+# In[13]:
+
+
+plt.plot(ks, label='KMeans')
+plt.plot(kmeans_pca, label='KMeans + PCA')
+plt.ylabel('Silhouette score')
+plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+plt.show()
 
 
 # In[ ]:
